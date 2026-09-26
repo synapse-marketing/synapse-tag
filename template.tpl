@@ -180,7 +180,7 @@ ___TEMPLATE_PARAMETERS___
         "name": "gtm_server_domain",
         "displayName": "GTM Server Side URL",
         "simpleValueType": true,
-        "help": "The address of your server-side GTM container, for example \u003ci\u003ehttps://sgtm.example.com\u003c/i\u003e. On a site with the Synapse edge worker use the path on your own domain, for example \u003ci\u003ehttps://example.com/lmr\u003c/i\u003e.",
+        "help": "The address of your server-side GTM container, for example \u003ci\u003ehttps://sgtm.example.com\u003c/i\u003e. If the site uses the Synapse edge worker, enter the path on your own domain instead, for example \u003ci\u003ehttps://example.com/lmr\u003c/i\u003e.",
         "alwaysInSummary": true,
         "valueValidators": [
           {
@@ -193,7 +193,7 @@ ___TEMPLATE_PARAMETERS___
         "name": "add_data_layer",
         "checkboxText": "Send all from Data Layer",
         "simpleValueType": true,
-        "help": "Adds the values of the data layer to the event. The event then goes as a POST through the sender script.",
+        "help": "If enabled, all values from the data layer are added to the event. The event is then sent as a POST request through the sender script.",
         "alwaysInSummary": true,
         "enablingConditions": [
           {
@@ -213,7 +213,7 @@ ___TEMPLATE_PARAMETERS___
                 "checkboxText": "Use own Data Model",
                 "simpleValueType": true,
                 "defaultValue": true,
-                "help": "Builds the data layer values from the pushes up to the event that fired the tag, instead of reading the current state. Use it when values change between the push and the moment the tag runs.",
+                "help": "If enabled, the data layer values are rebuilt from the pushes up to the event that fired the tag, instead of being read from the current state of the page. Use it when values change between the push and the moment the tag runs.",
                 "alwaysInSummary": true
               },
               {
@@ -221,7 +221,7 @@ ___TEMPLATE_PARAMETERS___
                 "name": "add_data_layer_use_only_current_push",
                 "checkboxText": "Send the current Data Layer event object data only",
                 "simpleValueType": true,
-                "help": "Sends only the object of the data layer push that fired the tag, not everything collected so far.",
+                "help": "If enabled, only the object of the data layer push that fired the tag is sent, not everything collected so far.",
                 "alwaysInSummary": true,
                 "enablingConditions": [
                   {
@@ -248,7 +248,7 @@ ___TEMPLATE_PARAMETERS___
         "checkboxText": "Send common data",
         "simpleValueType": true,
         "defaultValue": true,
-        "help": "Adds page_location, page_hostname, page_referrer, page_title and page_encoding. A POST also adds screen_resolution and viewport_size.",
+        "help": "If enabled, page_location, page_hostname, page_referrer, page_title and page_encoding are added to the event. A POST request also adds screen_resolution and viewport_size.",
         "alwaysInSummary": true
       },
       {
@@ -256,7 +256,7 @@ ___TEMPLATE_PARAMETERS___
         "name": "add_consent_state",
         "checkboxText": "Add consent state",
         "simpleValueType": true,
-        "help": "Adds \u003ci\u003econsent_state\u003c/i\u003e with the Google consent mode status of ad_storage, ad_user_data, ad_personalization, analytics_storage, functionality_storage, personalization_storage and security_storage. The Synapse Client can use it to decide about its cookies.",
+        "help": "If enabled, \u003ci\u003econsent_state\u003c/i\u003e is added to the event with the Google consent mode status of ad_storage, ad_user_data, ad_personalization, analytics_storage, functionality_storage, personalization_storage and security_storage. The Synapse Client uses it to decide whether it may write its cookies and whether it may add stored user data to the event.",
         "alwaysInSummary": true
       },
       {
@@ -264,7 +264,7 @@ ___TEMPLATE_PARAMETERS___
         "name": "add_common_cookie",
         "checkboxText": "Add Common Cookie",
         "simpleValueType": true,
-        "help": "Adds \u003ci\u003ecommon_cookie\u003c/i\u003e with the click and browser ids that advertising platforms keep in first-party cookies (Meta, TikTok, Pinterest, Snapchat, Taboola, Awin, Rakuten, Klaviyo, Outbrain, Webgains, Postscript, Microsoft, Google, LinkedIn and OpenAI), so server tags can match the visitor even when the platform script is blocked.",
+        "help": "If enabled, \u003ci\u003ecommon_cookie\u003c/i\u003e is added to the event with the click and browser IDs that advertising platforms keep in first-party cookies (Meta, TikTok, Pinterest, Snapchat, Taboola, Awin, Rakuten, Klaviyo, Outbrain, Webgains, Postscript, Microsoft, Google, LinkedIn and OpenAI), so server tags can match the visitor even when the platform\u0027s own script is blocked.",
         "alwaysInSummary": true
       }
     ]
@@ -279,6 +279,7 @@ ___TEMPLATE_PARAMETERS___
         "type": "SIMPLE_TABLE",
         "name": "custom_data",
         "displayName": "",
+        "help": "The \u003cb\u003eStore\u003c/b\u003e column keeps a value in the browser for later events: \u003cb\u003eCookies\u003c/b\u003e in the \u003ci\u003esynapse\u003c/i\u003e cookie, \u003cb\u003eLocal Storage\u003c/b\u003e in local storage, \u003cb\u003eEverywhere\u003c/b\u003e in both. The Synapse Client adds a value kept in the cookie to every later event that lacks it, if the visitor allowed advertising (\u003ci\u003eAdd consent state\u003c/i\u003e must be enabled).",
         "simpleTableColumns": [
           {
             "defaultValue": "",
@@ -381,6 +382,7 @@ ___TEMPLATE_PARAMETERS___
         "type": "SIMPLE_TABLE",
         "name": "user_data",
         "displayName": "",
+        "help": "The \u003cb\u003eStore\u003c/b\u003e column keeps a value in the browser for later events: \u003cb\u003eCookies\u003c/b\u003e in the \u003ci\u003esynapse\u003c/i\u003e cookie, \u003cb\u003eLocal Storage\u003c/b\u003e in local storage, \u003cb\u003eEverywhere\u003c/b\u003e in both. The Synapse Client adds a value kept in the cookie to every later event that lacks it, if the visitor allowed advertising (\u003ci\u003eAdd consent state\u003c/i\u003e must be enabled).",
         "simpleTableColumns": [
           {
             "defaultValue": "email_address",
@@ -551,7 +553,7 @@ ___TEMPLATE_PARAMETERS___
         ],
         "simpleValueType": true,
         "defaultValue": "auto",
-        "help": "\u003cb\u003eAuto\u003c/b\u003e sends a first-party pixel whenever it can, which ad blockers, Brave and iOS let through. It uses a POST only when the event needs it: the data layer, GA4 parameters, the response push or rich commands, an MD5 value, or an event too large for a pixel. If the sender script for a POST cannot load, the event still goes as a pixel.",
+        "help": "\u003cb\u003eAuto\u003c/b\u003e sends the event as a first-party pixel whenever possible, which ad blockers, Brave and iOS let through. It sends a POST request only when the event needs one: data layer values, GA4 parameters, a push of the response, rich commands, an MD5 value, or an event too large for a pixel. If the sender script for a POST request cannot load, the event is still sent as a pixel. \u003cb\u003ePOST\u003c/b\u003e always sends through the sender script, \u003cb\u003eGET\u003c/b\u003e always as a pixel.",
         "valueValidators": [
           {
             "type": "NON_EMPTY"
@@ -564,7 +566,7 @@ ___TEMPLATE_PARAMETERS___
         "displayName": "Path",
         "simpleValueType": true,
         "defaultValue": "/data",
-        "help": "The path the Synapse Client listens on. Keep \u003cb\u003e/data\u003c/b\u003e unless the client is set up with another path.",
+        "help": "The path the Synapse Client listens on. Keep \u003cb\u003e/data\u003c/b\u003e unless the client is set up with a different path.",
         "valueValidators": [
           {
             "type": "NON_EMPTY"
@@ -584,7 +586,7 @@ ___TEMPLATE_PARAMETERS___
         "displayName": "Protocol version",
         "simpleValueType": true,
         "defaultValue": 2,
-        "help": "Version of the request format sent to the Synapse Client.",
+        "help": "The version of the request format sent to the Synapse Client. Keep the default.",
         "valueValidators": [
           {
             "type": "NON_EMPTY"
@@ -598,7 +600,7 @@ ___TEMPLATE_PARAMETERS___
         "simpleValueType": true,
         "alwaysInSummary": false,
         "defaultValue": "https://cdn.jsdelivr.net/gh/synapse-marketing/synapse-tag@1/sender.min.js",
-        "help": "The script that sends POST requests. By default it is loaded from \u003ci\u003ehttps://cdn.jsdelivr.net/gh/synapse-marketing/synapse-tag@1/sender.min.js\u003c/i\u003e. \u003ci\u003e${data-script-version}\u003c/i\u003e in the address is replaced with the script version this tag needs.",
+        "help": "The address of the script that sends POST requests. By default it is loaded from \u003ci\u003ehttps://cdn.jsdelivr.net/gh/synapse-marketing/synapse-tag@1/sender.min.js\u003c/i\u003e. If the address contains \u003ci\u003e${data-script-version}\u003c/i\u003e, it is replaced with the script version this tag needs.",
         "enablingConditions": [
           {
             "paramName": "request_type",
@@ -621,7 +623,7 @@ ___TEMPLATE_PARAMETERS___
         "checkboxText": "Add GA4 specific parameters",
         "simpleValueType": true,
         "defaultValue": false,
-        "help": "Adds the parameters a GA4 client expects (measurement id, page id, request count), so the event can also be processed as a GA4 hit.",
+        "help": "If enabled, the parameters a GA4 client expects (measurement ID, page ID and request count) are added, so the event can also be processed as a GA4 hit.",
         "enablingConditions": [
           {
             "paramName": "request_type",
@@ -636,7 +638,7 @@ ___TEMPLATE_PARAMETERS___
             "displayName": "Measurement ID",
             "simpleValueType": true,
             "valueHint": "G-ABCD123456",
-            "help": "The GA4 measurement ID.",
+            "help": "The GA4 measurement ID, for example G-ABCD123456.",
             "enablingConditions": [
               {
                 "paramName": "addGaParameters",
@@ -658,7 +660,7 @@ ___TEMPLATE_PARAMETERS___
         "checkboxText": "Push event to DataLayer after tag receives a response",
         "simpleValueType": true,
         "defaultValue": false,
-        "help": "When the server answers, the response is pushed to the data layer as an event, so other tags can use it.",
+        "help": "If enabled, the response of the server is pushed to the data layer as an event, so other tags can use it.",
         "enablingConditions": [
           {
             "paramName": "request_type",
@@ -692,7 +694,7 @@ ___TEMPLATE_PARAMETERS___
             "displayName": "DataLayer Object Name",
             "simpleValueType": true,
             "defaultValue": "dataLayer",
-            "help": "The global name of the data layer array.",
+            "help": "The global name of the data layer array. Keep \u003cb\u003edataLayer\u003c/b\u003e unless the site uses a different name.",
             "enablingConditions": [
               {
                 "paramName": "dataLayerEventPush",
@@ -714,7 +716,7 @@ ___TEMPLATE_PARAMETERS___
         "checkboxText": "Support rich command protocol",
         "simpleValueType": true,
         "defaultValue": false,
-        "help": "Lets the server container answer with commands, for example pixels to load in the browser, as server tags with browser follow-ups need.",
+        "help": "If enabled, the server container can answer with commands for the browser, for example pixels to load, which some server tags need.",
         "enablingConditions": [
           {
             "paramName": "request_type",
@@ -729,7 +731,7 @@ ___TEMPLATE_PARAMETERS___
             "checkboxText": "Wait for cookies before event is pushed",
             "simpleValueType": true,
             "defaultValue": false,
-            "help": "Waits until the cookie pixels sent by the server have loaded before the response is pushed to the data layer.",
+            "help": "If enabled, the response is pushed to the data layer only after the cookie pixels sent by the server have loaded.",
             "enablingConditions": [
               {
                 "paramName": "richsstsse",
@@ -746,7 +748,7 @@ ___TEMPLATE_PARAMETERS___
         "checkboxText": "Use fetch instead of XMLHttpRequest (for POST requests only)",
         "simpleValueType": true,
         "defaultValue": true,
-        "help": "fetch with keepalive also delivers events fired while the page closes. Without it the request uses XMLHttpRequest.",
+        "help": "If enabled, POST requests are sent with fetch and keepalive, which also delivers events fired while the page is closing. Otherwise XMLHttpRequest is used.",
         "enablingConditions": [
           {
             "paramName": "request_type",
@@ -767,6 +769,7 @@ ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 const callInWindow = require('callInWindow');
 const copyFromDataLayer = require('copyFromDataLayer');
 const copyFromWindow = require('copyFromWindow');
+const decodeUriComponent = require('decodeUriComponent');
 const encodeUriComponent = require('encodeUriComponent');
 const generateRandom = require('generateRandom');
 const getContainerVersion = require('getContainerVersion');
@@ -1188,8 +1191,13 @@ function applyTransformations(senderLoaded) {
   if (toStore.length) storeValues(toStore);
 }
 
+// The "synapse" cookie holds the stored values as readable pairs,
+// "user_id:1|email_address:21d1...", each name and value URL-encoded on its
+// own, so a digest or an ID shows as it is. Cookies written as JSON by earlier
+// versions are still read and take this form the next time a value is stored.
+// Local storage keeps JSON.
 function storeValues(list) {
-  const inCookie = readStored(getCookieValues(STORE_KEY)[0]);
+  const inCookie = readStored(getCookieValues(STORE_KEY, false)[0]);
   const inLocal = localStorage ? readStored(localStorage.getItem(STORE_KEY)) : {};
   list.forEach((item) => {
     if (!item.value) return;
@@ -1200,18 +1208,37 @@ function storeValues(list) {
     localStorage.setItem(STORE_KEY, JSON.stringify(inLocal));
   }
   if (Object.keys(inCookie).length) {
-    setCookie(STORE_KEY, JSON.stringify(inCookie), { secure: true, domain: 'auto', path: '/' });
+    setCookie(STORE_KEY, formatStored(inCookie), { secure: true, domain: 'auto', path: '/' }, false);
   }
+}
+
+function formatStored(values) {
+  return Object.keys(values)
+    .map((key) => encodeUriComponent(key) + ':' + encodeUriComponent(makeString(values[key])))
+    .join('|');
 }
 
 function readStored(text) {
   const out = {};
   if (!text) return out;
-  const saved = JSON.parse(text);
-  if (!saved) return out;
-  for (let key in saved) {
-    if (saved[key]) out[key] = saved[key];
+  let raw = makeString(text);
+  if (raw.charAt(0) === '{' || raw.indexOf('%7B') === 0) {
+    const saved = JSON.parse(raw.charAt(0) === '{' ? raw : decodeUriComponent(raw));
+    if (getType(saved) === 'object') {
+      for (let key in saved) {
+        if (saved[key]) out[key] = saved[key];
+      }
+    }
+    return out;
   }
+  if (raw.indexOf(':') === -1 && raw.indexOf('%3A') !== -1) raw = decodeUriComponent(raw) || '';
+  raw.split('|').forEach((pair) => {
+    const mark = pair.indexOf(':');
+    if (mark < 1) return;
+    const key = decodeUriComponent(pair.substring(0, mark));
+    const value = decodeUriComponent(pair.substring(mark + 1));
+    if (key && value) out[key] = value;
+  });
   return out;
 }
 
@@ -2387,4 +2414,4 @@ scenarios: []
 
 ___NOTES___
 
-Synapse Tag 1.1.3, 26.09.2026.
+Synapse Tag 1.2.0, 26.09.2026.
