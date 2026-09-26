@@ -1,5 +1,7 @@
 homepage: "https://synapse-marketing.com/"
 documentation: "https://github.com/synapse-marketing/synapse-tag"
 versions:
+  - sha: 29a9ed7b0a848d98dc2cd6accf0bdaec91464a0b
+    changeNotes: Synapse Tag 1.2.0, readable store cookie (name:value pairs), help texts in plain English.
   - sha: 30ccccffce377309997f2f027cec55095f5b41de
     changeNotes: Synapse Tag 1.1.3, first release in the Gallery.
