@@ -1,5 +1,5 @@
 homepage: "https://synapse-marketing.com/"
 documentation: "https://github.com/synapse-marketing/synapse-tag"
 versions:
-  - sha: 2e8acc0c45dce119ef2441ebde7fdf509dd815dc
-    changeNotes: Synapse Tag 1.1.2, first release in the Gallery.
+  - sha: 30ccccffce377309997f2f027cec55095f5b41de
+    changeNotes: Synapse Tag 1.1.3, first release in the Gallery.
