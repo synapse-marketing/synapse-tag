@@ -2131,6 +2131,16 @@ ___WEB_PERMISSIONS___
   {
     "instance": {
       "key": {
+        "publicId": "access_template_storage",
+        "versionId": "1"
+      },
+      "param": []
+    },
+    "isRequired": true
+  },
+  {
+    "instance": {
+      "key": {
         "publicId": "access_consent",
         "versionId": "1"
       },
@@ -2377,4 +2387,4 @@ scenarios: []
 
 ___NOTES___
 
-Synapse Tag 1.1.2, 26.09.2026.
+Synapse Tag 1.1.3, 26.09.2026.
