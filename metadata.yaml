@@ -1,6 +1,8 @@
 homepage: "https://synapse-marketing.com/"
 documentation: "https://github.com/synapse-marketing/synapse-tag"
 versions:
+  - sha: 8fb56b805a2175cd6dce84e0299f85ffa69de0ca
+    changeNotes: Synapse Tag 1.2.2, the sender script loaded from this version's own address on jsDelivr (no moving range) and the script permission narrowed to it.
   - sha: 29f7b8beac83550a6d18c7a52d8ffe4748b16d50
     changeNotes: Synapse Tag 1.2.1, own icon with the Synapse Tag label.
   - sha: 29a9ed7b0a848d98dc2cd6accf0bdaec91464a0b
