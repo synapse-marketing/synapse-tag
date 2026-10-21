@@ -599,8 +599,8 @@ ___TEMPLATE_PARAMETERS___
         "displayName": "Synapse Tag Script URL",
         "simpleValueType": true,
         "alwaysInSummary": false,
-        "defaultValue": "https://cdn.jsdelivr.net/gh/synapse-marketing/synapse-tag@1/sender.min.js",
-        "help": "The address of the script that sends POST requests. By default it is loaded from \u003ci\u003ehttps://cdn.jsdelivr.net/gh/synapse-marketing/synapse-tag@1/sender.min.js\u003c/i\u003e. If the address contains \u003ci\u003e${data-script-version}\u003c/i\u003e, it is replaced with the script version this tag needs.",
+        "defaultValue": "https://cdn.jsdelivr.net/gh/synapse-marketing/synapse-tag@1.2.2/sender.min.js",
+        "help": "The address of the script that sends POST requests. By default it is loaded from \u003ci\u003ehttps://cdn.jsdelivr.net/gh/synapse-marketing/synapse-tag@1.2.2/sender.min.js\u003c/i\u003e. If the address contains \u003ci\u003e${data-script-version}\u003c/i\u003e, it is replaced with the script version this tag needs.",
         "enablingConditions": [
           {
             "paramName": "request_type",
@@ -798,7 +798,7 @@ const toBase64 = require('toBase64');
 // The sender script handles POST requests (the data layer, GA4 parameters,
 // response push, server commands, MD5, very large events).
 const SENDER_VERSION = 'v9';
-const DEFAULT_SENDER_URL = 'https://cdn.jsdelivr.net/gh/synapse-marketing/synapse-tag@1/sender.min.js';
+const DEFAULT_SENDER_URL = 'https://cdn.jsdelivr.net/gh/synapse-marketing/synapse-tag@1.2.2/sender.min.js';
 const SENDER_LOADED_KEY = 'gtm_synapseTagScriptLoadedCache';
 const TEMP_CLIENT_ID_KEY = 'gtm_synapseTagTempClientId';
 // Stored user data lives under this name in a cookie and in local storage.
@@ -1791,7 +1791,7 @@ ___WEB_PERMISSIONS___
             "listItem": [
               {
                 "type": 1,
-                "string": "https://cdn.jsdelivr.net/gh/synapse-marketing/*"
+                "string": "https://cdn.jsdelivr.net/gh/synapse-marketing/synapse-tag@1.2.2/*"
               }
             ]
           }
@@ -2414,4 +2414,4 @@ scenarios: []
 
 ___NOTES___
 
-Synapse Tag 1.2.1, 13.10.2026.
+Synapse Tag 1.2.2, 21.10.2026.
