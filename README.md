@@ -10,7 +10,7 @@ container running the [Synapse Client](https://github.com/synapse-marketing/syna
   from the server.
 - Hashing (SHA-256) runs inside the tag, so events with hashed user data go as
   first-party pixels that ad blockers, Brave and iOS let through.
-- With the Synapse Conversion Tracking plugin on the page, pixels are sent with
+- With the Synapse Server-Side Tracking plugin on the page, pixels are sent with
   fetch keepalive, so events fired while the page closes still arrive.
 - A blocked pixel is retried once in a disguised form that the Synapse edge
   worker or the Synapse Client unpacks.
