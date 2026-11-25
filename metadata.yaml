@@ -1,6 +1,8 @@
 homepage: "https://synapse-marketing.com/"
 documentation: "https://github.com/synapse-marketing/synapse-tag"
 versions:
+  - sha: 1a61d7f1b3db98b5727b6da3e6e22a4f7463ce80
+    changeNotes: Synapse Tag 1.2.4, a new 96 px icon, the values of the address fields are encoded before use, setup steps in the read-me.
   - sha: c90ff166f1f4717387f3a28e653e2229db612f20
     changeNotes: Synapse Tag 1.2.3, the plugin is named Synapse Server-Side Tracking in the read-me and in a code comment. No change in behaviour.
   - sha: 8fb56b805a2175cd6dce84e0299f85ffa69de0ca
