@@ -1,6 +1,8 @@
 homepage: "https://synapse-marketing.com/"
 documentation: "https://github.com/synapse-marketing/synapse-tag"
 versions:
+  - sha: cb03c7a60235d7e2ba683f4e48065793a77ac4c7
+    changeNotes: Synapse Tag 1.3.0, the temporary visitor id is sent as _synid_temp and begins with synid.1., to go with Synapse Client 1.3.0. Update the client first.
   - sha: 1a61d7f1b3db98b5727b6da3e6e22a4f7463ce80
     changeNotes: Synapse Tag 1.2.4, a new 96 px icon, the values of the address fields are encoded before use, setup steps in the read-me.
   - sha: c90ff166f1f4717387f3a28e653e2229db612f20
