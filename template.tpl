@@ -599,8 +599,8 @@ ___TEMPLATE_PARAMETERS___
         "displayName": "Synapse Tag Script URL",
         "simpleValueType": true,
         "alwaysInSummary": false,
-        "defaultValue": "https://cdn.jsdelivr.net/gh/synapse-marketing/synapse-tag@1.2.4/sender.min.js",
-        "help": "The address of the script that sends POST requests. By default it is loaded from \u003ci\u003ehttps://cdn.jsdelivr.net/gh/synapse-marketing/synapse-tag@1.2.4/sender.min.js\u003c/i\u003e. If the address contains \u003ci\u003e${data-script-version}\u003c/i\u003e, it is replaced with the script version this tag needs.",
+        "defaultValue": "https://cdn.jsdelivr.net/gh/synapse-marketing/synapse-tag@1.3.0/sender.min.js",
+        "help": "The address of the script that sends POST requests. By default it is loaded from \u003ci\u003ehttps://cdn.jsdelivr.net/gh/synapse-marketing/synapse-tag@1.3.0/sender.min.js\u003c/i\u003e. If the address contains \u003ci\u003e${data-script-version}\u003c/i\u003e, it is replaced with the script version this tag needs.",
         "enablingConditions": [
           {
             "paramName": "request_type",
@@ -799,7 +799,7 @@ const toBase64 = require('toBase64');
 // The sender script handles POST requests (the data layer, GA4 parameters,
 // response push, server commands, MD5, very large events).
 const SENDER_VERSION = 'v9';
-const DEFAULT_SENDER_URL = 'https://cdn.jsdelivr.net/gh/synapse-marketing/synapse-tag@1.2.4/sender.min.js';
+const DEFAULT_SENDER_URL = 'https://cdn.jsdelivr.net/gh/synapse-marketing/synapse-tag@1.3.0/sender.min.js';
 const SENDER_LOADED_KEY = 'gtm_synapseTagScriptLoadedCache';
 const TEMP_CLIENT_ID_KEY = 'gtm_synapseTagTempClientId';
 // Stored user data lives under this name in a cookie and in local storage.
@@ -938,7 +938,7 @@ function pixelRequest() {
   rows.forEach((row) => {
     eventData[row.name] = row.value;
   });
-  eventData._dcid_temp = tempClientId();
+  eventData._synid_temp = tempClientId();
   return { url: url, eventData: eventData };
 }
 
@@ -979,7 +979,7 @@ function disguisedUrl(url) {
 function trimToLimit(request) {
   const keep = {
     event_id: true, value: true, currency: true, transaction_id: true, user_id: true,
-    consent_state: true, common_cookie: true, page_location: true, _dcid_temp: true, _syntrim: true
+    consent_state: true, common_cookie: true, page_location: true, _synid_temp: true, _syntrim: true
   };
   if (getType(data.user_data) === 'array') {
     data.user_data.forEach((row) => {
@@ -1069,7 +1069,7 @@ function sendPost() {
   rows.forEach((row) => {
     eventData[row.name] = row.value;
   });
-  eventData._dcid_temp = tempClientId();
+  eventData._synid_temp = tempClientId();
   if (data.addGaParameters && data.gaId) {
     eventData['x-ga-measurement_id'] = data.gaId;
     eventData['x-ga-page_id'] = copyFromDataLayer('gtm.start');
@@ -1125,7 +1125,7 @@ function addAdCookies(target) {
 }
 
 function tempClientId() {
-  const id = copyFromWindow(TEMP_CLIENT_ID_KEY) || 'dcid.1.' + getTimestampMillis() + '.' + generateRandom(100000000, 999999999);
+  const id = copyFromWindow(TEMP_CLIENT_ID_KEY) || 'synid.1.' + getTimestampMillis() + '.' + generateRandom(100000000, 999999999);
   setInWindow(TEMP_CLIENT_ID_KEY, id);
   return id;
 }
@@ -1803,7 +1803,7 @@ ___WEB_PERMISSIONS___
             "listItem": [
               {
                 "type": 1,
-                "string": "https://cdn.jsdelivr.net/gh/synapse-marketing/synapse-tag@1.2.4/*"
+                "string": "https://cdn.jsdelivr.net/gh/synapse-marketing/synapse-tag@1.3.0/*"
               }
             ]
           }
@@ -2426,4 +2426,4 @@ scenarios: []
 
 ___NOTES___
 
-Synapse Tag 1.2.4, 25.11.2026.
+Synapse Tag 1.3.0, 27.11.2026.
