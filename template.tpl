@@ -599,8 +599,8 @@ ___TEMPLATE_PARAMETERS___
         "displayName": "Synapse Tag Script URL",
         "simpleValueType": true,
         "alwaysInSummary": false,
-        "defaultValue": "https://cdn.jsdelivr.net/gh/synapse-marketing/synapse-tag@1.3.0/sender.min.js",
-        "help": "The address of the script that sends POST requests. By default it is loaded from \u003ci\u003ehttps://cdn.jsdelivr.net/gh/synapse-marketing/synapse-tag@1.3.0/sender.min.js\u003c/i\u003e. If the address contains \u003ci\u003e${data-script-version}\u003c/i\u003e, it is replaced with the script version this tag needs.",
+        "defaultValue": "https://cdn.jsdelivr.net/gh/synapse-marketing/synapse-tag@1.3.1/sender.min.js",
+        "help": "The address of the script that sends POST requests. By default it is loaded from \u003ci\u003ehttps://cdn.jsdelivr.net/gh/synapse-marketing/synapse-tag@1.3.1/sender.min.js\u003c/i\u003e. If the address contains \u003ci\u003e${data-script-version}\u003c/i\u003e, it is replaced with the script version this tag needs.",
         "enablingConditions": [
           {
             "paramName": "request_type",
@@ -799,7 +799,7 @@ const toBase64 = require('toBase64');
 // The sender script handles POST requests (the data layer, GA4 parameters,
 // response push, server commands, MD5, very large events).
 const SENDER_VERSION = 'v9';
-const DEFAULT_SENDER_URL = 'https://cdn.jsdelivr.net/gh/synapse-marketing/synapse-tag@1.3.0/sender.min.js';
+const DEFAULT_SENDER_URL = 'https://cdn.jsdelivr.net/gh/synapse-marketing/synapse-tag@1.3.1/sender.min.js';
 const SENDER_LOADED_KEY = 'gtm_synapseTagScriptLoadedCache';
 const TEMP_CLIENT_ID_KEY = 'gtm_synapseTagTempClientId';
 // Stored user data lives under this name in a cookie and in local storage.
@@ -1019,8 +1019,11 @@ function trimToLimit(request) {
 
 function sendWithSender(onScriptFailure) {
   const configured = data.sender_script_url;
-  // An address typed into the field is encoded; the default one is fixed.
-  const url = configured ? encodeUri(configured.replace('${data-script-version}', SENDER_VERSION)) : DEFAULT_SENDER_URL;
+  // An address typed into the field is encoded; the default one is fixed. A
+  // tag keeps the default of the template version it was made with, and each
+  // version may load the script of its own version alone, so the default of
+  // another version is read as this one's.
+  const url = configured && !isDefaultSender(configured) ? encodeUri(configured.replace('${data-script-version}', SENDER_VERSION)) : DEFAULT_SENDER_URL;
   if (!url) {
     onScriptFailure();
     return;
@@ -1257,6 +1260,29 @@ function readStored(text) {
 /*==============================================================================
   Helpers
 ==============================================================================*/
+
+// True for the default sender address of any version of this template: the
+// default with a version number (digits, single dots between them) where its
+// own stands.
+function isDefaultSender(address) {
+  const at = DEFAULT_SENDER_URL.indexOf('@') + 1;
+  const file = DEFAULT_SENDER_URL.slice(DEFAULT_SENDER_URL.indexOf('/', at));
+  const end = address.length - file.length;
+  if (address.slice(0, at) !== DEFAULT_SENDER_URL.slice(0, at) || address.slice(end) !== file) return false;
+  let digits = 0;
+  for (let i = at; i < end; i++) {
+    const ch = address.charAt(i);
+    if (ch === '.') {
+      if (!digits) return false;
+      digits = 0;
+    } else if ('0123456789'.indexOf(ch) === -1) {
+      return false;
+    } else {
+      digits++;
+    }
+  }
+  return digits > 0;
+}
 
 function base64Url(text) {
   return toBase64(text).split('+').join('-').split('/').join('_').split('=').join('');
@@ -1803,7 +1829,7 @@ ___WEB_PERMISSIONS___
             "listItem": [
               {
                 "type": 1,
-                "string": "https://cdn.jsdelivr.net/gh/synapse-marketing/synapse-tag@1.3.0/*"
+                "string": "https://cdn.jsdelivr.net/gh/synapse-marketing/synapse-tag@1.3.1/*"
               }
             ]
           }
@@ -2426,4 +2452,4 @@ scenarios: []
 
 ___NOTES___
 
-Synapse Tag 1.3.0, 27.11.2026.
+Synapse Tag 1.3.1, 27.11.2026.
