@@ -1,6 +1,8 @@
 homepage: "https://synapse-marketing.com/"
 documentation: "https://github.com/synapse-marketing/synapse-tag"
 versions:
+  - sha: 57fcdcd3bb3cb93c0401bc3fba288466b5d9ec5d
+    changeNotes: Synapse Tag 1.3.1, a tag made under an earlier version of the template loads the sender script of the version in use. Before, such a tag failed on events that need the sender. No setting to change.
   - sha: cb03c7a60235d7e2ba683f4e48065793a77ac4c7
     changeNotes: Synapse Tag 1.3.0, the temporary visitor id is sent as _synid_temp and begins with synid.1., to go with Synapse Client 1.3.0. Update the client first.
   - sha: 1a61d7f1b3db98b5727b6da3e6e22a4f7463ce80
